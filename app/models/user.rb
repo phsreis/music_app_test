@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :fullname, :role, presence: true
 
-  enum role: {admin: 'admin', user: 'user'}
+  enum role: { admin: 'admin', user: 'user' }
 
   def email_required?
     false

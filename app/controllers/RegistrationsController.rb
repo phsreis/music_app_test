@@ -4,6 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:fullname, :role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[fullname role])
   end
 end
