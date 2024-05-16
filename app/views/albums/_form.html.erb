@@ -1,27 +1,49 @@
-<%= form_with(model: album) do |form| %>
-  <% if album.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-        <% album.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <div class="card-header text-center">
+      <h2><%= album.new_record? ? "New Album" : "Edit Album" %></h2>
     </div>
-  <% end %>
+    <div class="card-body">
+      <%= form_with(model: album) do |form| %>
+        <% if album.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h4>
+            <ul>
+              <% album.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.label :year, style: "display: block" %>
-    <%= form.text_field :year %>
-  </div>
+        <div class="form-group">
+          <%= form.label :year %>
+          <%= form.text_field :year, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+        <div class="form-group">
+          <%= form.label :artist_id %>
+          <%= form.collection_select :artist_id, @artists, :id, :name, { prompt: "Select Artist" }, { class: "form-control" } %>
+        </div>
+
+        <div class="form-group text-center mt-5">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+
+    <div class="text-center">
+      <div>
+        <% unless album.new_record? %>
+          <%= link_to "Show this album", @album %>
+        <% end %>
+        <%= link_to "Back to albums", albums_path %>
+      </div>
+    </div>
+</div>
