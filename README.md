@@ -1,24 +1,30 @@
-# README
+# Project Details
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Objective
 
-Things you may want to cover:
+The main purpose of this project is to create a music collection application. Login screen, Sign In as common user and Administrator parameters, creation of music albums that are addressed to artists, options to create, show, edit and delete albums. The artists were loaded from an API. ASDF, Rails, Bootstrap, SQLite, Rake were used for this. **All the necessary gems have been included in the Gemfile**.
 
-* Ruby version
+## Configuration
 
-* System dependencies
+This project runs with **Ruby**, version `3.3.0`, and **Rails** `7.1.3.2`. If it's needed it can be used a version controller as [ASDF](https://www.lucascaton.com.br/2020/02/17/instalacao-do-ruby-do-nodejs-no-ubuntu-linux-usando-asdf).<span style="color:red">**Observation: When installing ASDF, disregard the mentioned versions in the guide and take the current ones as relevant. Always verify the documentation on the official website of the tool to be installed.**</span>
 
-* Configuration
+In this project, it's used SQLite, if it's need to be change to run on your local machine, it can be done on [database.yml](config/database.yml)
 
-* Database creation
+To execute the project, follow the steps bellow:
 
-* Database initialization
+```console
+$ bundle install
+$ bin/rails db:create && db:migrate
+$ bin/rails server
+```
 
-* How to run the test suite
+To import the artists it was used Rake Task:
 
-* Services (job queues, cache servers, search engines, etc.)
+```console
+$ rails album:artist
+```
+To grant quality with the code it was used rubocop. To execute it:
 
-* Deployment instructions
-
-* ...
+```console
+$ bundle exec rubocop
+```
